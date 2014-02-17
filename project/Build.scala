@@ -22,30 +22,27 @@ object ApplicationBuild extends Build {
       libraryDependencies ++= Seq(akkaActor, akkaRemote, akkaKernel, akkaTestKit)
     )
 
-  /**/
+  val activeAgent = Project(
+    id   = "active-agent",
+    base = file("modules/activeagent")
+  ).settings(
 
-    val activeAgent = Project(
-      id   = "active-agent",
-      base = file("modules/activeagent")
-    ).settings(
+      scalaVersion := scalaVer,
+      description := "active-agent",
+      libraryDependencies ++= Seq(akkaActor, akkaRemote, akkaKernel, akkaTestKit)
 
-        scalaVersion := scalaVer,
-        description := "active-agent",
-        libraryDependencies ++= Seq(akkaActor, akkaRemote, akkaKernel, akkaTestKit)
+  ).dependsOn(myactors).aggregate(myactors)
 
-    ).dependsOn(myactors).aggregate(myactors)
+  val passiveAgent = Project(
+    id   = "passive-agent",
+    base = file("modules/passiveagent")
+  ).settings(
 
-    val passiveAgent = Project(
-      id   = "passive-agent",
-      base = file("modules/passiveagent")
-    ).settings(
+      scalaVersion := scalaVer,
+      description := "passive-agent",
+      libraryDependencies ++= Seq(akkaActor, akkaRemote, akkaKernel, akkaTestKit)
 
-        scalaVersion := scalaVer,
-        description := "passive-agent",
-        libraryDependencies ++= Seq(akkaActor, akkaRemote, akkaKernel, akkaTestKit)
-
-    ).dependsOn(myactors).aggregate(myactors)
-
+  ).dependsOn(myactors).aggregate(myactors)
 
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

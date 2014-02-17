@@ -16,16 +16,11 @@ object PassiveAgent {
       ConfigFactory.load.getConfig("PassiveAgent")
     )
 
-    val server = system.actorFor(
-      s"akka://application@localhost:2552/user/scheduler")
-
-
-    val agent = system.actorOf(Props[Pinger])
-
+    val passiveAgent = system.actorOf(Props[Pinger],"passive")
 
 
     import system.dispatcher
-    system.scheduler.scheduleOnce( 5 seconds ){ system.shutdown() }
+    system.scheduler.scheduleOnce( 10 seconds ){ system.shutdown() }
   }
 
 }
