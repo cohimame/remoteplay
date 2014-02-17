@@ -13,7 +13,7 @@ object PassiveAgent {
 
     val system = ActorSystem(
       "agent",
-      ConfigFactory.load.getConfig("ActiveAgent")
+      ConfigFactory.load.getConfig("PassiveAgent")
     )
 
     val server = system.actorFor(
