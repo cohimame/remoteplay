@@ -1,27 +1,24 @@
 package myactors
 
-import akka.actor.{ActorRef, Actor}
+import akka.actor.{ActorLogging, Actor}
 
 object Protocol {
   case object Ask
   case object Response
-  case class Target(ref: ActorRef)
 }
 
-class Admin extends Actor {
+class Pinger extends Actor with ActorLogging {
   import Protocol._
 
   def receive = {
-    case Ask => Response
+    case Ask =>
+      log info s"got Response from $sender"
+      sender ! Response
+
+    case Response =>
+      log info s"got Response from $sender"
   }
 }
 
-class Agent extends Actor {
-  import Protocol._
 
-  def receive = {
-    case Target(ref) => ref ! Ask
-  }
-
-}
 
