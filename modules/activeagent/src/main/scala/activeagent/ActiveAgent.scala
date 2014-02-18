@@ -18,7 +18,7 @@ object ActiveAgent {
     val activeAgent = system.actorOf(Props[Pinger])
 
     val passiveAgent = system.actorSelection(
-      "akka.tcp://agent@0.0.0.0:8000/user/passive")
+      "akka.tcp://application@0.0.0.0:8000/user/passive")
 
 
     //activeAgent ! Ask
