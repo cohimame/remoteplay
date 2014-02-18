@@ -20,7 +20,7 @@ object PassiveAgent {
 
 
     import system.dispatcher
-    system.scheduler.scheduleOnce( 10 seconds ){ system.shutdown() }
+    system.scheduler.scheduleOnce( 30 seconds ){ system.shutdown() }
   }
 
 }

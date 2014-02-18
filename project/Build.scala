@@ -7,7 +7,7 @@ object ApplicationBuild extends Build {
   import Dependencies._
 
   val appName         = "remoteplay"
-  val appVersion      = "0.5"
+  val appVersion      = "0.7"
 
   val appDependencies = Seq(
     jdbc, anorm, akkaRemote, akkaKernel, akkaTestKit
@@ -50,11 +50,11 @@ object ApplicationBuild extends Build {
 
 
   object BuildSettings {
-    val scalaVer = "2.10.0"
+    val scalaVer = "2.10.2"
   }
 
   object Dependencies {
-    lazy val version = "2.1.4"
+    lazy val version = "2.2.0"
     lazy val akkaActor   =   "com.typesafe.akka" %% "akka-actor"   % version
     lazy val akkaRemote  =   "com.typesafe.akka" %% "akka-remote"  % version
     lazy val akkaKernel  =   "com.typesafe.akka" %% "akka-kernel"  % version

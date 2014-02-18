@@ -17,14 +17,16 @@ object ActiveAgent {
 
     val activeAgent = system.actorOf(Props[Pinger])
 
-    val passiveAgent = system.actorFor(s"akka://agent@localhost:5555/user/passive")
+    val passiveAgent = system.actorSelection(
+      "akka.tcp://agent@0.0.0.0:8000/user/passive")
 
-    activeAgent ! Ask
+
+    //activeAgent ! Ask
 
     passiveAgent tell (Ask , activeAgent)
 
     import system.dispatcher
-    system.scheduler.scheduleOnce( 5 seconds ){ system.shutdown() }
+    system.scheduler.scheduleOnce( 10 seconds ){ system.shutdown() }
   }
 
 }
